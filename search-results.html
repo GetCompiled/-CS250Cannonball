@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- search bar -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cannonball – Search Results</title>
+  <title>Cannonball - Search Results</title>
   <style>
     :root {
       --light-grey: #D9D9D9;
@@ -25,8 +24,8 @@
       font-family: Arial, sans-serif;
       min-height: 100vh;
       background:
-              radial-gradient(circle at top, rgba(68, 137, 247, 0.25), transparent 40%),
-              linear-gradient(180deg, var(--light-blue) 0%, var(--dark-blue) 100%);
+        radial-gradient(circle at top, rgba(68, 137, 247, 0.25), transparent 40%),
+        linear-gradient(180deg, var(--light-blue) 0%, var(--dark-blue) 100%);
       color: #fff;
     }
 
@@ -46,199 +45,23 @@
     }
 
     .brand img { height: 42px; }
-    
+
     .logo-btn {
       display: inline-block;
       border-radius: 10px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .logo-btn img{
+
+    .logo-btn img {
       height: 42px;
       display: block;
     }
-    .logo-btn:hover{
+
+    .logo-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
       cursor: pointer;
     }
-
-  
-
-    .login-btn {
-      border: none;
-      background: linear-gradient(90deg, var(--light-blue), var(--dark-blue));
-      color: #fff;
-      padding: 10px 22px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-      font-weight: 600;
-    }
-
-    .search-section {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 40px 20px;
-      text-align: center;
-      flex: 1;
-    }
-
-    h1 {
-      font-size: clamp(2rem, 5vw, 3rem);
-      margin-bottom: 20px;
-      font-weight: 800;
-    }
-
-    .subtitle {
-      font-size: 1.1rem;
-      color: rgba(255, 255, 255, 0.85);
-      margin-bottom: 30px;
-      font-weight: 600;
-    }
-
-    .search-box {
-      max-width: 460px;
-      margin: 0 auto 30px;
-      background: rgba(217, 217, 217, 0.95);
-      color: var(--dark-grey);
-      border-radius: 18px;
-      padding: 24px 20px 18px;
-      box-shadow: 0 18px 40px rgba(27, 35, 116, 0.24);
-    }
-
-    .search-box label {
-      display: block;
-      text-align: left;
-      margin-bottom: 10px;
-      font-weight: 600;
-    }
-
-    .search-box input {
-      width: 100%;
-      padding: 14px 16px;
-      border: 1px solid #c8c8d8;
-      border-radius: 10px;
-      font-size: 1rem;
-    }
-
-    .search-btn {
-      width: 100%;
-      margin-top: 14px;
-      padding: 14px;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(90deg, var(--light-blue), var(--dark-blue));
-      color: white;
-      font-size: 1.1rem;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    .results {
-      max-width: 1100px;
-      margin: 0 auto;
-      padding: 0 20px;
-      width: 100%;
-    }
-
-    .results-header {
-      color: #fff;
-      margin-bottom: 24px;
-      font-size: 1.3rem;
-      font-weight: 700;
-    }
-
-    .result-item {
-      background: rgba(217, 217, 217, 0.95);
-      color: var(--dark-grey);
-      border-radius: 16px;
-      padding: 22px;
-      margin-bottom: 16px;
-      box-shadow: 0 14px 30px rgba(27, 35, 116, 0.18);
-    }
-
-    .result-item h3 {
-      margin-bottom: 14px;
-      font-size: 1.3rem;
-    }
-
-    .result-item p {
-      margin-bottom: 8px;
-      line-height: 1.5;
-    }
-
-    .result-item a {
-      color: var(--light-blue);
-      text-decoration: none;
-      font-weight: 600;
-    }
-
-    .result-item a:hover {
-      text-decoration: underline;
-    }
-
-    .no-results {
-      color: rgba(255, 255, 255, 0.85);
-      font-style: italic;
-      text-align: center;
-      padding: 20px;
-      font-size: 1.1rem;
-    }
-
-    footer {
-      margin-top: auto;
-      text-align: center;
-      padding: 18px;
-      background: rgba(255, 255, 255, 0.92);
-      color: #666;
-    }
-
-    @media (max-width: 900px) {
-      .search-box {
-        max-width: 100%;
-      }
-    }
-    :root {
-      --light-grey: #D9D9D9;
-      --dark-grey: #474646;
-      --dark-blue: #5543F6;
-      --light-blue: #4489F7;
-      --poor-bg: #E6A9A9;
-      --poor-text: #7A5554;
-      --fair-bg: #E4E6A9;
-      --fair-text: #7A7954;
-      --good-bg: #A9E6BD;
-      --good-text: #547A60;
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: Arial, sans-serif;
-      min-height: 100vh;
-      background:
-              radial-gradient(circle at top, rgba(68, 137, 247, 0.25), transparent 40%),
-              linear-gradient(180deg, var(--light-blue) 0%, var(--dark-blue) 100%);
-      color: #fff;
-    }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .topbar {
-      background: rgba(255, 255, 255, 0.96);
-      padding: 16px 32px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-    }
-
-    .brand img { height: 42px; }
 
     .login-btn {
       border: none;
@@ -380,9 +203,9 @@
 <body>
 <div class="page">
   <header class="topbar">
- <div class ="brand">
-      <a href = "index.html" class = "logo-btn">
-      <img src="Cannonball Assets/Cannonball Logo With Text.PNG" alt="Cannonball logo" />
+    <div class="brand">
+      <a href="index.html" class="logo-btn">
+        <img src="Cannonball Assets/Cannonball Logo With Text.PNG" alt="Cannonball logo" />
       </a>
     </div>
     <button class="login-btn" type="button">Log In</button>
@@ -401,724 +224,64 @@
     <div class="results" id="results"></div>
   </main>
 
-  <footer>Data provided by the EPA How’s My Waterway Database and local government sources</footer>
+  <footer>Data provided by the EPA How's My Waterway Database and local government sources</footer>
 </div>
 
+<script src="water-data.js"></script>
+<script>
+  const waterBodies = Array.isArray(window.WATER_BODIES) ? window.WATER_BODIES : [];
 
+  function searchResults() {
+    const query = document.getElementById("searchTerm").value.toLowerCase().trim();
+    const resultsDiv = document.getElementById("results");
 
-  <script>
-    //Hardcoded return list for search, with all relevant information being read from the included project CSV file.
-    // TO BE IMPLEMENTED: Either create a JS object from the CSV file which could be periodically updated to avoid hardcoding, or use API calls to the EPA database for live information.
-    const waterBodies = [
-      {
-        "location": "Scripps Ranch",
-        "waterbody": "Miramar Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/miramar-program-brochure.pdf",
-        "zipcode": "92131"
-      },
-      {
-        "location": "San Carlos / La Mesa area",
-        "waterbody": "Murray Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/murray-program-brochure.pdf",
-        "zipcode": "92119, 91942"
-      },
-      {
-        "location": "North County / San Dieguito area",
-        "waterbody": "Hodges Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/hodges-program-brochure.pdf",
-        "zipcode": "92029, 92078"
-      },
-      {
-        "location": "South County",
-        "waterbody": "Lower Otay Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/otay-program-brochure.pdf",
-        "zipcode": "91913"
-      },
-      {
-        "location": "South County",
-        "waterbody": "Upper Otay Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/otay-program-brochure.pdf",
-        "zipcode": "91913"
-      },
-      {
-        "location": "East County",
-        "waterbody": "San Vicente Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/san-vicente-program-brochure.pdf",
-        "zipcode": "92040"
-      },
-      {
-        "location": "North County",
-        "waterbody": "Sutherland Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/sutherland-program-brochure.pdf",
-        "zipcode": "92065"
-      },
-      {
-        "location": "East County backcountry",
-        "waterbody": "Barrett Reservoir",
-        "swimmability": 1,
-        "drinkable": "Yes",
-        "activities": "swimming/wading/bathing/diving prohibited",
-        "sources": "https://www.sandiego.gov/sites/default/files/barrett-program-brochure.pdf",
-        "zipcode": "91901"
-      },
-      {
-        "location": "San Onofre",
-        "waterbody": "Trestles - San Onofre State Beach",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Swimming/Hiking",
-        "sources": "https://www.parks.ca.gov/?page_id=647",
-        "zipcode": "92672"
-      },
-      {
-        "location": "San Onofre",
-        "waterbody": "Church's - San Onofre Creek Outlet",
-        "swimmability": 4,
-        "drinkable": "No",
-        "activities": "Surfing/Beachcombing (caution: runoff)",
-        "sources": "https://www.parks.ca.gov/?page_id=647",
-        "zipcode": "92672"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Harbor Beach",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing/Volleyball/Boating",
-        "sources": "https://visitoceanside.org/things-to-do/beaches/harbor-beach/",
-        "zipcode": "92054"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "San Luis Rey River outlet",
-        "swimmability": 3,
-        "drinkable": "No",
-        "activities": "Birdwatching/Walking (Avoid water contact)",
-        "sources": "https://www.sanluisreywatershed.org/",
-        "zipcode": "92058"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Oceanside Pier",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Fishing/Surfing/Swimming",
-        "sources": "https://visitoceanside.org/things-to-do/beaches/oceanside-pier/",
-        "zipcode": "92054"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Tyson Street",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing/Picnicking",
-        "sources": "https://visitoceanside.org/things-to-do/beaches/",
-        "zipcode": "92054"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Forster Street",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Bodyboarding",
-        "sources": "https://visitoceanside.org/things-to-do/beaches/",
-        "zipcode": "92054"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Buccaneer Beach",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Swimming/Wading",
-        "sources": "https://visitoceanside.org/things-to-do/beaches/buccaneer-beach/",
-        "zipcode": "92054"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Cassidy Street",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Swimming/Bodyboarding",
-        "sources": "https://visitoceanside.org/things-to-do/beaches/",
-        "zipcode": "92054"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Saint Malo Beach",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Swimming/Walking",
-        "sources": "https://visitoceanside.org/things-to-do/beaches/",
-        "zipcode": "92054"
-      },
-      {
-        "location": "Oceanside",
-        "waterbody": "Buena Vista Lagoon",
-        "swimmability": 1,
-        "drinkable": "No",
-        "activities": "Birdwatching/Nature Center (No contact)",
-        "sources": "https://wildlife.ca.gov/Lands/Places-to-Visit/Buena-Vista-Lagoon-ER",
-        "zipcode": "92008, 92054"
-      },
-      {
-        "location": "Carlsbad",
-        "waterbody": "Tamarack Ave - Carlsbad State Beach",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing/Kayaking",
-        "sources": "https://www.parks.ca.gov/?page_id=660",
-        "zipcode": "92008"
-      },
-      {
-        "location": "Carlsbad",
-        "waterbody": "Cerezo Drive - Carlsbad State Beach",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Sunbathing",
-        "sources": "https://www.parks.ca.gov/?page_id=660",
-        "zipcode": "92008"
-      },
-      {
-        "location": "Carlsbad",
-        "waterbody": "Palomar Airport Rd. - Carlsbad SB",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Surfing/Swimming",
-        "sources": "https://www.parks.ca.gov/?page_id=660",
-        "zipcode": "92011"
-      },
-      {
-        "location": "Carlsbad",
-        "waterbody": "Encina Creek - Carlsbad State Beach",
-        "swimmability": 4,
-        "drinkable": "No",
-        "activities": "Walking (high bacteria near outlet)",
-        "sources": "https://www.sdbeachinfo.com/",
-        "zipcode": "92008"
-      },
-      {
-        "location": "Carlsbad",
-        "waterbody": "Ponto Drive - Carlsbad State Beach",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing/Camping",
-        "sources": "https://www.parks.ca.gov/?page_id=662",
-        "zipcode": "92011"
-      },
-      {
-        "location": "Carlsbad",
-        "waterbody": "Poinsettia Lane - Carlsbad State Beach",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://www.parks.ca.gov/?page_id=660",
-        "zipcode": "92008"
-      },
-      {
-        "location": "Carlsbad / Encinitas",
-        "waterbody": "Batiquitos Lagoon outlet",
-        "swimmability": 4,
-        "drinkable": "No",
-        "activities": "Walking/Birdwatching (Avoid water contact)",
-        "sources": "https://www.batiquitoslagoon.org/visit/",
-        "zipcode": "92011, 92024"
-      },
-      {
-        "location": "Encinitas",
-        "waterbody": "Moonlight Beach",
-        "swimmability": 9,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing/Volleyball/Fire pits",
-        "sources": "https://www.encinitasca.gov/government/departments/parks-and-recreation/parks/moonlight-beach",
-        "zipcode": "92024"
-      },
-      {
-        "location": "Encinitas",
-        "waterbody": "Swami's Beach",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Tidepooling",
-        "sources": "https://www.encinitasca.gov/government/departments/parks-and-recreation/parks/swamis-beach",
-        "zipcode": "92024"
-      },
-      {
-        "location": "Cardiff",
-        "waterbody": "San Elijo State Park at ramp",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Surfing/Camping/Swimming",
-        "sources": "https://www.parks.ca.gov/?page_id=664",
-        "zipcode": "92007"
-      },
-      {
-        "location": "Cardiff",
-        "waterbody": "San Elijo State Park (main entrance)",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Surfing/Camping/Swimming",
-        "sources": "https://www.parks.ca.gov/?page_id=664",
-        "zipcode": "92007"
-      },
-      {
-        "location": "Cardiff",
-        "waterbody": "San Elijo Lagoon outlet",
-        "swimmability": 3,
-        "drinkable": "No",
-        "activities": "Birdwatching/Hiking (Avoid water contact)",
-        "sources": "https://thenaturecollective.org/san-elijo-lagoon/",
-        "zipcode": "92007"
-      },
-      {
-        "location": "Cardiff",
-        "waterbody": "Las Olas (Georges) - Cardiff State Beach",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Surfing/Swimming",
-        "sources": "https://www.parks.ca.gov/?page_id=664",
-        "zipcode": "92007"
-      },
-      {
-        "location": "Cardiff",
-        "waterbody": "Seaside State Park - Cardiff State Beach",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Tidepooling",
-        "sources": "https://www.parks.ca.gov/?page_id=664",
-        "zipcode": "92007"
-      },
-      {
-        "location": "Solana Beach",
-        "waterbody": "Tide Beach Park",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Tidepooling",
-        "sources": "https://www.cityofsolanabeach.org/facilities/facility/details/Tide-Beach-Park-52",
-        "zipcode": "92075"
-      },
-      {
-        "location": "Solana Beach",
-        "waterbody": "Fletcher Cove",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://www.cityofsolanabeach.org/facilities/facility/details/Fletcher-Cove-Beach-Park-50",
-        "zipcode": "92075"
-      },
-      {
-        "location": "Del Mar",
-        "waterbody": "San Dieguito River outlet",
-        "swimmability": 4,
-        "drinkable": "No",
-        "activities": "Walking/Dog access (Caution: bacteria)",
-        "sources": "https://www.sdrvc.org/",
-        "zipcode": "92014"
-      },
-      {
-        "location": "Del Mar",
-        "waterbody": "15th Street",
-        "swimmability": 9,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing/Sunbathing",
-        "sources": "https://www.delmar.ca.us/government/departments/community-services/beach-information",
-        "zipcode": "92014"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Torrey Pines at Los Penasquitos Lagoon",
-        "swimmability": 4,
-        "drinkable": "No",
-        "activities": "Hiking/Nature Viewing (No water contact)",
-        "sources": "https://www.torreypine.org/activities/los-penasquitos-lagoon.html",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Blacks Beach",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Sunbathing (Clothing optional)",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/blacks",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Scripps Pier",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://scripps.ucsd.edu/research/research-facilities/piers/scripps-pier",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "El Paseo Grande - La Jolla Shores",
-        "swimmability": 9,
-        "drinkable": "No",
-        "activities": "Swimming/Kayaking/Snorkeling",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/shores",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Camino Del Oro - La Jolla Shores",
-        "swimmability": 9,
-        "drinkable": "No",
-        "activities": "Swimming/Kayaking/Snorkeling",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/shores",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Vallecitos - La Jolla Shores",
-        "swimmability": 9,
-        "drinkable": "No",
-        "activities": "Swimming/Kayaking/Snorkeling",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/shores",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Avenida De La Playa - La Jolla Shores",
-        "swimmability": 9,
-        "drinkable": "No",
-        "activities": "Kayak Launch/Swimming",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/shores",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "La Jolla Cove",
-        "swimmability": 10,
-        "drinkable": "No",
-        "activities": "Snorkeling/Scuba/Swimming (Seal viewing)",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/cove",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Children's Pool",
-        "swimmability": 3,
-        "drinkable": "No",
-        "activities": "Seal Viewing (Swimming discouraged due to seals)",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/pool",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Nicholson Point",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Tidepooling/Photography",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/nicholson",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Vista De La Playa",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/vista",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Bonair Windansea",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Swimming",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/windansea",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Playa Del Norte Windansea",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Swimming",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/windansea",
-        "zipcode": "92037"
-      },
-      {
-        "location": "La Jolla",
-        "waterbody": "Palomar Windansea",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Swimming",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/windansea",
-        "zipcode": "92037"
-      },
-      {
-        "location": "Pacific Beach",
-        "waterbody": "Tourmaline Surf Park",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Kiteboarding",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/tourmaline",
-        "zipcode": "92109"
-      },
-      {
-        "location": "Pacific Beach",
-        "waterbody": "Law St.",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing/Yoga",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/pb",
-        "zipcode": "92109"
-      },
-      {
-        "location": "Mission Bay",
-        "waterbody": "De Anza Cove swim area",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Paddleboarding/Picnicking",
-        "sources": "https://www.sandiego.gov/park-and-recreation/parks/regional/missionbay",
-        "zipcode": "92109"
-      },
-      {
-        "location": "Pacific Beach",
-        "waterbody": "Grand Avenue",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/pb",
-        "zipcode": "92109"
-      },
-      {
-        "location": "Mission Bay",
-        "waterbody": "Vacation Isle",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Paddleboarding",
-        "sources": "https://www.sandiego.gov/park-and-recreation/parks/regional/missionbay",
-        "zipcode": "92109"
-      },
-      {
-        "location": "Mission Beach",
-        "waterbody": "South Mission Beach Jetty",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Surfing/Fishing/Volleyball",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/mb",
-        "zipcode": "92109"
-      },
-      {
-        "location": "Ocean Beach",
-        "waterbody": "SD River Outlet (Dog Beach)",
-        "swimmability": 4,
-        "drinkable": "No",
-        "activities": "Off-leash dogs/Walking (Bacteria risk)",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/ob",
-        "zipcode": "92107"
-      },
-      {
-        "location": "Ocean Beach",
-        "waterbody": "Stub Jetty",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/ob",
-        "zipcode": "92107"
-      },
-      {
-        "location": "Ocean Beach",
-        "waterbody": "Ocean Beach Pier at Newport Avenue",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Fishing/Surfing/Swimming",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/pier",
-        "zipcode": "92107"
-      },
-      {
-        "location": "Ocean Beach",
-        "waterbody": "Ocean Beach Pier at Narragansett Avenue",
-        "swimmability": 7,
-        "drinkable": "No",
-        "activities": "Surfing/Walking",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/pier",
-        "zipcode": "92107"
-      },
-      {
-        "location": "Sunset Cliffs",
-        "waterbody": "Bermuda Avenue",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Surfing/Photography",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/sunsetcliffs",
-        "zipcode": "92107"
-      },
-      {
-        "location": "Sunset Cliffs",
-        "waterbody": "Ladera Street",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Surfing/Photography",
-        "sources": "https://www.sandiego.gov/lifeguards/beaches/sunsetcliffs",
-        "zipcode": "92107"
-      },
-      {
-        "location": "San Diego Bay",
-        "waterbody": "Shelter Island",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Fishing/Boating/Walking",
-        "sources": "https://www.portofsandiego.org/experiences/parks-attractions/shelter-island",
-        "zipcode": "92106"
-      },
-      {
-        "location": "Coronado",
-        "waterbody": "North Beach",
-        "swimmability": 9,
-        "drinkable": "No",
-        "activities": "Off-leash dogs/Swimming/Surfing",
-        "sources": "https://www.coronado.ca.us/government/departments/parks-recreation/beaches",
-        "zipcode": "92118"
-      },
-      {
-        "location": "Coronado",
-        "waterbody": "Avenida Lunar",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://www.coronado.ca.us/government/departments/parks-recreation/beaches",
-        "zipcode": "92118"
-      },
-      {
-        "location": "Coronado",
-        "waterbody": "Crown Cove",
-        "swimmability": 8,
-        "drinkable": "No",
-        "activities": "Kayaking/Paddleboarding/Swimming",
-        "sources": "https://www.parks.ca.gov/?page_id=634",
-        "zipcode": "92118"
-      },
-      {
-        "location": "Imperial Beach",
-        "waterbody": "Carnation Avenue",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Swimming/Surfing",
-        "sources": "https://www.imperialbeachca.gov/recreation/beaches",
-        "zipcode": "91932"
-      },
-      {
-        "location": "Imperial Beach",
-        "waterbody": "Imperial Beach Pier",
-        "swimmability": 6,
-        "drinkable": "No",
-        "activities": "Fishing/Surfing/Swimming",
-        "sources": "https://www.imperialbeachca.gov/government/departments/public-works-engineering/imperial-beach-pier",
-        "zipcode": "91932"
-      },
-      {
-        "location": "Imperial Beach",
-        "waterbody": "Cortez Avenue",
-        "swimmability": 5,
-        "drinkable": "No",
-        "activities": "Surfing/Swimming (Caution: water quality)",
-        "sources": "https://www.imperialbeachca.gov/recreation/beaches",
-        "zipcode": "91932"
-      },
-      {
-        "location": "Imperial Beach",
-        "waterbody": "Seacoast Drive",
-        "swimmability": 4,
-        "drinkable": "No",
-        "activities": "Walking (High sewage risk)",
-        "sources": "https://www.sdbeachinfo.com/",
-        "zipcode": "91932"
-      },
-      {
-        "location": "Imperial Beach",
-        "waterbody": "Tijuana Slough at Tijuana Rivermouth",
-        "swimmability": 1,
-        "drinkable": "No",
-        "activities": "Wildlife Reserve (Avoid water contact)",
-        "sources": "https://trnerr.org/about/reserve-overview/",
-        "zipcode": "91932"
-      },
-      {
-        "location": "Imperial Beach",
-        "waterbody": "Border Field State Park",
-        "swimmability": 3,
-        "drinkable": "No",
-        "activities": "Hiking/Sightseeing (Avoid water)",
-        "sources": "https://www.parks.ca.gov/?page_id=640",
-        "zipcode": "92154"
-      }
-    ];
-
-    function searchResults() {
-      const query = document.getElementById("searchTerm").value.toLowerCase().trim();
-      const resultsDiv = document.getElementById("results");
-
-      if (!query) {
-        resultsDiv.innerHTML = '<p class="no-results">Please enter a zip code or location.</p>';
-        return;
-      }
-
-      const matches = waterBodies.filter(item =>
-        item.location.toLowerCase().includes(query) ||
-        item.waterbody.toLowerCase().includes(query) ||
-        item.activities.toLowerCase().includes(query) ||
-        (item.zipcode && item.zipcode.includes(query))
-      );
-
-      if (matches.length === 0) {
-        resultsDiv.innerHTML = '<p class="no-results">No results found for "' + query + '"</p>';
-        return;
-      }
-
-      let html = '<div class="results-header">Results for "' + query + '" (' + matches.length + ' found)</div>';
-      matches.forEach(item => {
-        html += `
-        <div class="result-item">
-          <h3>${item.waterbody}</h3>
-          <p><strong>Location:</strong> ${item.location}</p>
-          <p><strong>Zip Code:</strong> ${item.zipcode || "N/A"}</p>
-          <p><strong>Swimmability:</strong> ${item.swimmability}/10</p>
-          <p><strong>Drinkable:</strong> ${item.drinkable}</p>
-          <p><strong>Activities:</strong> ${item.activities}</p>
-          <p><strong>Source:</strong> <a href="${item.sources}" target="_blank" rel="noopener noreferrer">${item.sources}</a></p>
-        </div>
-        `;
-      });
-      resultsDiv.innerHTML = html;
+    if (!query) {
+      resultsDiv.innerHTML = '<p class="no-results">Please enter a zip code or location.</p>';
+      return;
     }
 
-    document.getElementById("searchTerm").addEventListener("keypress", function(e) {
-      if (e.key === "Enter") searchResults();
+    const matches = waterBodies.filter(item =>
+      item.location.toLowerCase().includes(query) ||
+      item.waterbody.toLowerCase().includes(query) ||
+      item.activities.toLowerCase().includes(query) ||
+      (item.zipcode && item.zipcode.includes(query))
+    );
+
+    if (matches.length === 0) {
+      resultsDiv.innerHTML = '<p class="no-results">No results found for "' + query + '"</p>';
+      return;
+    }
+
+    let html = '<div class="results-header">Results for "' + query + '" (' + matches.length + ' found)</div>';
+    matches.forEach(item => {
+      html += `
+      <div class="result-item">
+        <h3>${item.waterbody}</h3>
+        <p><strong>Location:</strong> ${item.location}</p>
+        <p><strong>Zip Code:</strong> ${item.zipcode || "N/A"}</p>
+        <p><strong>Swimmability:</strong> ${item.swimmability}/10</p>
+        <p><strong>Drinkable:</strong> ${item.drinkable}</p>
+        <p><strong>Activities:</strong> ${item.activities}</p>
+        <p><strong>Source:</strong> <a href="${item.sources}" target="_blank" rel="noopener noreferrer">${item.sources}</a></p>
+      </div>
+      `;
     });
 
-    const params = new URLSearchParams(window.location.search);
-    const initialQuery = params.get("query");
+    resultsDiv.innerHTML = html;
+  }
 
-    if (initialQuery) {
-      document.getElementById("searchTerm").value = initialQuery;
+  document.getElementById("searchTerm").addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
       searchResults();
     }
-  </script>
+  });
 
+  const params = new URLSearchParams(window.location.search);
+  const initialQuery = params.get("query");
+  if (initialQuery) {
+    document.getElementById("searchTerm").value = initialQuery;
+    searchResults();
+  }
+</script>
 </body>
 </html>

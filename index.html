@@ -298,8 +298,14 @@
 <!-- ========================
      ZIPCODE SCRIPT
 ======================== -->
+<script src="water-data.js"></script>
 <script>
-  const availableZipcodes = ["91901", "91913", "91932", "91942", "92007", "92008", "92011", "92014", "92024", "92029", "92037", "92040", "92054", "92058", "92065", "92075", "92078", "92106", "92107", "92109", "92118", "92119", "92131", "92154", "92672"];
+  const availableZipcodes = [...new Set(
+    (window.WATER_BODIES || [])
+      .flatMap(item => (item.zipcode || "").split(","))
+      .map(zip => zip.trim())
+      .filter(zip => /^\d{5}$/.test(zip))
+  )];
   const searchTermInput = document.getElementById("searchTerm");
   const error = document.getElementById("error");
 
