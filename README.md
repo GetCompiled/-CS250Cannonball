@@ -43,6 +43,24 @@ Intended next steps:
 
 After that, the long-term goal would be to replace or supplement static data with live API calls for up-to-date water quality information.
 
+API Starter (Local Proxy)
+To avoid browser CORS issues while starting API work, use the local proxy in server/.
+1. Open a terminal in the project root.
+2. Run: cd server
+3. Run: npm start
+4. Proxy endpoint: http://localhost:3000/api/water-data
+5. Health check: http://localhost:3000/health
+
+Optional upstream setup (PowerShell):
+1. cd server
+2. $env:UPSTREAM_WATER_DATA_URL = "https://your-api.example.com/water"
+3. npm start
+
+Current frontend behavior:
+1. search-results.html requests http://localhost:3000/api/water-data
+2. If upstream is configured and reachable, proxy returns upstream data
+3. Otherwise proxy falls back to local water-data.js
+
 Long-Term Goals / Planned Features
 
 The intended long-term direction for Cannonball includes:

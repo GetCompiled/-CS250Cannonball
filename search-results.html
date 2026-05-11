@@ -134,6 +134,18 @@
       cursor: pointer;
     }
 
+    .data-status {
+      margin: 12px auto 0;
+      max-width: 460px;
+      text-align: left;
+      font-size: 0.95rem;
+      color: rgba(255, 255, 255, 0.92);
+    }
+
+    .data-status strong {
+      font-weight: 700;
+    }
+
     .results {
       max-width: 1100px;
       margin: 0 auto;
@@ -221,6 +233,8 @@
       <button class="search-btn" onclick="searchResults()">Search</button>
     </div>
 
+    <p class="data-status" id="dataStatus">Data source: loading...</p>
+
     <div class="results" id="results"></div>
   </main>
 
@@ -229,11 +243,46 @@
 
 <script src="water-data.js"></script>
 <script>
-  const waterBodies = Array.isArray(window.WATER_BODIES) ? window.WATER_BODIES : [];
+  // Local proxy endpoint. Change only if your proxy runs on a different host/port.
+  window.CANNONBALL_LIVE_DATA_URL = "http://localhost:3000/api/water-data";
+</script>
+<script src="live-data-loader.js"></script>
+<script>
+  let waterBodies = [];
+  let isDataReady = false;
+
+  function formatTimestamp(timestamp) {
+    if (!timestamp) {
+      return "";
+    }
+
+    return new Date(timestamp).toLocaleString();
+  }
+
+  function updateDataStatus(meta) {
+    const sourceMap = {
+      live: "live API",
+      cache: "cache",
+      fallback: "local fallback"
+    };
+    const sourceLabel = sourceMap[meta.source] || meta.source;
+    const updatedText = meta.updatedAt ? " | Last updated: " + formatTimestamp(meta.updatedAt) : "";
+    const missingUrlHint = !meta.liveUrl ? " | Live URL not configured" : "";
+    document.getElementById("dataStatus").innerHTML = "<strong>Data source:</strong> " + sourceLabel + updatedText + missingUrlHint;
+  }
+
+  function safeLower(value) {
+    return String(value || "").toLowerCase();
+  }
 
   function searchResults() {
     const query = document.getElementById("searchTerm").value.toLowerCase().trim();
     const resultsDiv = document.getElementById("results");
+
+    if (!isDataReady) {
+      resultsDiv.innerHTML = '<p class="no-results">Loading data. Please try again in a moment.</p>';
+      return;
+    }
 
     if (!query) {
       resultsDiv.innerHTML = '<p class="no-results">Please enter a zip code or location.</p>';
@@ -241,10 +290,10 @@
     }
 
     const matches = waterBodies.filter(item =>
-      item.location.toLowerCase().includes(query) ||
-      item.waterbody.toLowerCase().includes(query) ||
-      item.activities.toLowerCase().includes(query) ||
-      (item.zipcode && item.zipcode.includes(query))
+      safeLower(item.location).includes(query) ||
+      safeLower(item.waterbody).includes(query) ||
+      safeLower(item.activities).includes(query) ||
+      safeLower(item.zipcode).includes(query)
     );
 
     if (matches.length === 0) {
@@ -276,12 +325,22 @@
     }
   });
 
-  const params = new URLSearchParams(window.location.search);
-  const initialQuery = params.get("query");
-  if (initialQuery) {
-    document.getElementById("searchTerm").value = initialQuery;
-    searchResults();
+  async function initData() {
+    const params = new URLSearchParams(window.location.search);
+    const initialQuery = params.get("query");
+
+    const meta = await window.loadWaterData();
+    waterBodies = Array.isArray(meta.data) ? meta.data : [];
+    isDataReady = true;
+    updateDataStatus(meta);
+
+    if (initialQuery) {
+      document.getElementById("searchTerm").value = initialQuery;
+      searchResults();
+    }
   }
+
+  initData();
 </script>
 </body>
 </html>

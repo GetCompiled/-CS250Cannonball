@@ -1,0 +1,9 @@
+{
+  "name": "cannonball-proxy",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Simple proxy API for Cannonball live data",
+  "scripts": {
+    "start": "node server.js"
+  }
+}
