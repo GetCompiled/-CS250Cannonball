@@ -7,7 +7,7 @@ const UPSTREAM_WATER_DATA_URL = process.env.UPSTREAM_WATER_DATA_URL || "";
 
 function setCors(res) {
     res.setHeader("Access-Control-Allow-Origin", "*");
-    res.setHeader("Access-Control-Allow-Methods", "GET, OPTIONS");
+    res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
     res.setHeader("Access-Control-Allow-Headers", "Content-Type");
 }
 
@@ -84,8 +84,44 @@ const server = http.createServer(async (req, res) => {
     }
 
     if (req.method === "GET" && requestUrl.pathname === "/api/water-data") {
-    await handleWaterDataRequest(res);
-    return;
+        await handleWaterDataRequest(res);
+        return;
+    }
+    
+    if (req.method === "POST" && requestUrl.pathname === "/login") {
+        let body = "";
+    
+        req.on("data", chunk => {
+            body += chunk.toString();
+        });
+    
+        req.on("end", () => {
+            try {
+                const { email, password } = JSON.parse(body);
+    
+                const demoEmail = "test@cannonball.com";
+                const demoPassword = "password123";
+    
+                if (email === demoEmail && password === demoPassword) {
+                    sendJson(res, 200, {
+                        success: true,
+                        message: "Login successful"
+                    });
+                } else {
+                    sendJson(res, 401, {
+                        success: false,
+                        message: "Invalid email or password"
+                    });
+                }
+            } catch (error) {
+                sendJson(res, 400, {
+                    success: false,
+                    message: "Invalid request body"
+                });
+            }
+        });
+    
+        return;
     }
 
     sendJson(res, 404, { error: "Not found" });
