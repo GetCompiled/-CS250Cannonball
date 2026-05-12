@@ -136,13 +136,78 @@
 
     .data-status {
       margin: 12px auto 0;
-      max-width: 460px;
+      max-width: 900px;
       text-align: left;
       font-size: 0.95rem;
       color: rgba(255, 255, 255, 0.92);
     }
 
     .data-status strong {
+      font-weight: 700;
+    }
+
+    .filters {
+      margin: 16px auto 24px;
+      max-width: 900px;
+      background: rgba(217, 217, 217, 0.95);
+      color: var(--dark-grey);
+      border-radius: 16px;
+      padding: 16px;
+      box-shadow: 0 14px 30px rgba(27, 35, 116, 0.18);
+      text-align: left;
+    }
+
+    .filters-row {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 10px;
+      align-items: end;
+    }
+
+    .filter-field label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .filter-field select {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #c8c8d8;
+      border-radius: 10px;
+      font-size: 0.95rem;
+      background: #fff;
+      color: var(--dark-grey);
+    }
+
+    .clear-filters-btn {
+      width: 100%;
+      padding: 10px 12px;
+      border: none;
+      border-radius: 10px;
+      background: #2f415d;
+      color: #fff;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .active-filters {
+      margin-top: 12px;
+      min-height: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      background: rgba(85, 67, 246, 0.12);
+      color: #2f2b64;
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 0.85rem;
       font-weight: 700;
     }
 
@@ -209,6 +274,10 @@
       .search-box {
         max-width: 100%;
       }
+
+      .filters-row {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -235,6 +304,51 @@
 
     <p class="data-status" id="dataStatus">Data source: loading...</p>
 
+    <section class="filters" aria-label="Result filters">
+      <div class="filters-row">
+        <div class="filter-field">
+          <label for="minSwimFilter">Minimum swimmability</label>
+          <select id="minSwimFilter">
+            <option value="">Any score</option>
+            <option value="3">3+</option>
+            <option value="5">5+</option>
+            <option value="7">7+</option>
+            <option value="9">9+</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="drinkableFilter">Drinkable</label>
+          <select id="drinkableFilter">
+            <option value="">Any status</option>
+            <option value="yes">Yes</option>
+            <option value="no">No</option>
+            <option value="unknown">Unknown</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="activityFilter">Activity</label>
+          <select id="activityFilter">
+            <option value="">Any activity</option>
+          </select>
+        </div>
+
+        <div class="filter-field">
+          <label for="sortFilter">Sort by</label>
+          <select id="sortFilter">
+            <option value="relevance">Relevance</option>
+            <option value="swim-desc">Swimmability: high to low</option>
+            <option value="swim-asc">Swimmability: low to high</option>
+            <option value="name-asc">Name: A to Z</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="active-filters" id="activeFilters"></div>
+      <button class="clear-filters-btn" id="clearFiltersBtn" type="button">Clear Filters</button>
+    </section>
+
     <div class="results" id="results"></div>
   </main>
 
@@ -243,7 +357,7 @@
 
 <script src="water-data.js"></script>
 <script>
-  // Local proxy endpoint. Change only if your proxy runs on a different host/port.
+  // Local proxy endpoint.
   window.CANNONBALL_LIVE_DATA_URL = "http://localhost:3000/api/water-data";
 </script>
 <script src="live-data-loader.js"></script>
@@ -251,11 +365,19 @@
   let waterBodies = [];
   let isDataReady = false;
 
+  const filterEls = {
+    minSwim: document.getElementById("minSwimFilter"),
+    drinkable: document.getElementById("drinkableFilter"),
+    activity: document.getElementById("activityFilter"),
+    sort: document.getElementById("sortFilter"),
+    chips: document.getElementById("activeFilters"),
+    clear: document.getElementById("clearFiltersBtn")
+  };
+
   function formatTimestamp(timestamp) {
     if (!timestamp) {
       return "";
     }
-
     return new Date(timestamp).toLocaleString();
   }
 
@@ -275,9 +397,108 @@
     return String(value || "").toLowerCase();
   }
 
+  function splitActivities(value) {
+    return String(value || "")
+      .split(/[,\/;|]/)
+      .map(part => part.trim())
+      .filter(Boolean);
+  }
+
+  function normalizeDrinkable(value) {
+    const raw = safeLower(value);
+    if (raw === "yes" || raw === "y" || raw === "true") return "yes";
+    if (raw === "no" || raw === "n" || raw === "false") return "no";
+    return "unknown";
+  }
+
+  function populateActivityFilter(rows) {
+    const seen = new Map();
+    (rows || []).forEach(row => {
+      splitActivities(row.activities).forEach(activity => {
+        const key = activity.toLowerCase();
+        if (!seen.has(key)) {
+          seen.set(key, activity);
+        }
+      });
+    });
+    const sortedOptions = [...seen.values()].sort((a, b) => a.localeCompare(b));
+    filterEls.activity.innerHTML = '<option value="">Any activity</option>';
+    sortedOptions.forEach(option => {
+      const optionEl = document.createElement("option");
+      optionEl.value = option;
+      optionEl.textContent = option;
+      filterEls.activity.appendChild(optionEl);
+    });
+  }
+
+  function getFilterState() {
+    return {
+      minSwim: filterEls.minSwim.value,
+      drinkable: filterEls.drinkable.value,
+      activity: filterEls.activity.value,
+      sort: filterEls.sort.value || "relevance"
+    };
+  }
+
+  function applyFilters(rows, filters) {
+    return (rows || []).filter(item => {
+      if (filters.minSwim && Number(item.swimmability) < Number(filters.minSwim)) return false;
+      if (filters.drinkable && normalizeDrinkable(item.drinkable) !== filters.drinkable) return false;
+      if (filters.activity) {
+        const activities = splitActivities(item.activities).map(safeLower);
+        if (!activities.includes(safeLower(filters.activity))) return false;
+      }
+      return true;
+    });
+  }
+
+  function sortResults(rows, sortType) {
+    const sorted = [...rows];
+    if (sortType === "swim-desc") return sorted.sort((a, b) => Number(b.swimmability) - Number(a.swimmability));
+    if (sortType === "swim-asc") return sorted.sort((a, b) => Number(a.swimmability) - Number(b.swimmability));
+    if (sortType === "name-asc") return sorted.sort((a, b) => safeLower(a.waterbody).localeCompare(safeLower(b.waterbody)));
+    return sorted;
+  }
+
+  function renderFilterChips(filters) {
+    const chips = [];
+    if (filters.minSwim) chips.push("Min swimmability: " + filters.minSwim + "+");
+    if (filters.drinkable) chips.push("Drinkable: " + filters.drinkable);
+    if (filters.activity) chips.push("Activity: " + filters.activity);
+    if (filters.sort && filters.sort !== "relevance") {
+      chips.push("Sort: " + filterEls.sort.options[filterEls.sort.selectedIndex].text);
+    }
+    filterEls.chips.innerHTML = chips
+      .map(chip => '<span class="filter-chip">' + chip + '</span>')
+      .join("");
+  }
+
+  function syncUrl(query, filters) {
+    const params = new URLSearchParams();
+    if (query) params.set("query", query);
+    if (filters.minSwim) params.set("minSwim", filters.minSwim);
+    if (filters.drinkable) params.set("drinkable", filters.drinkable);
+    if (filters.activity) params.set("activity", filters.activity);
+    if (filters.sort && filters.sort !== "relevance") params.set("sort", filters.sort);
+    const nextUrl = window.location.pathname + (params.toString() ? "?" + params.toString() : "");
+    window.history.replaceState({}, "", nextUrl);
+  }
+
+  function hydrateFiltersFromParams(params) {
+    filterEls.minSwim.value = params.get("minSwim") || "";
+    filterEls.drinkable.value = params.get("drinkable") || "";
+    filterEls.sort.value = params.get("sort") || "relevance";
+    const activityParam = params.get("activity") || "";
+    if ([...filterEls.activity.options].some(o => o.value === activityParam)) {
+      filterEls.activity.value = activityParam;
+    }
+  }
+
   function searchResults() {
     const query = document.getElementById("searchTerm").value.toLowerCase().trim();
     const resultsDiv = document.getElementById("results");
+    const filters = getFilterState();
+    renderFilterChips(filters);
 
     if (!isDataReady) {
       resultsDiv.innerHTML = '<p class="no-results">Loading data. Please try again in a moment.</p>';
@@ -296,13 +517,17 @@
       safeLower(item.zipcode).includes(query)
     );
 
-    if (matches.length === 0) {
-      resultsDiv.innerHTML = '<p class="no-results">No results found for "' + query + '"</p>';
+    const filteredMatches = applyFilters(matches, filters);
+    const finalMatches = sortResults(filteredMatches, filters.sort);
+    syncUrl(query, filters);
+
+    if (finalMatches.length === 0) {
+      resultsDiv.innerHTML = '<p class="no-results">No results found for "' + query + '" with current filters.</p>';
       return;
     }
 
-    let html = '<div class="results-header">Results for "' + query + '" (' + matches.length + ' found)</div>';
-    matches.forEach(item => {
+    let html = '<div class="results-header">Results for "' + query + '" (' + finalMatches.length + ' found)</div>';
+    finalMatches.forEach(item => {
       html += `
       <div class="result-item">
         <h3>${item.waterbody}</h3>
@@ -320,9 +545,19 @@
   }
 
   document.getElementById("searchTerm").addEventListener("keypress", function (e) {
-    if (e.key === "Enter") {
-      searchResults();
-    }
+    if (e.key === "Enter") searchResults();
+  });
+
+  filterEls.minSwim.addEventListener("change", searchResults);
+  filterEls.drinkable.addEventListener("change", searchResults);
+  filterEls.activity.addEventListener("change", searchResults);
+  filterEls.sort.addEventListener("change", searchResults);
+  filterEls.clear.addEventListener("click", function () {
+    filterEls.minSwim.value = "";
+    filterEls.drinkable.value = "";
+    filterEls.activity.value = "";
+    filterEls.sort.value = "relevance";
+    searchResults();
   });
 
   async function initData() {
@@ -333,6 +568,8 @@
     waterBodies = Array.isArray(meta.data) ? meta.data : [];
     isDataReady = true;
     updateDataStatus(meta);
+    populateActivityFilter(waterBodies);
+    hydrateFiltersFromParams(params);
 
     if (initialQuery) {
       document.getElementById("searchTerm").value = initialQuery;
