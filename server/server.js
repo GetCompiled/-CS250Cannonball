@@ -99,8 +99,8 @@ const server = http.createServer(async (req, res) => {
             try {
                 const { email, password } = JSON.parse(body);
     
-                const demoEmail = "test@cannonball.com";
-                const demoPassword = "password123";
+                const demoEmail = "victor@sdsu.edu";
+                const demoPassword = "aztec123";
     
                 if (email === demoEmail && password === demoPassword) {
                     sendJson(res, 200, {
