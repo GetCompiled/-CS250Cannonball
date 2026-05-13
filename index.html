@@ -245,7 +245,11 @@
       <img src="Cannonball Assets/Cannonball Logo With Text.PNG" alt="Cannonball logo" />
       </a>
     </div>
-    <button class="login-btn" type="button" onclick="window.location.href='login.html'">Log In</button>
+    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <a href="community.html" style="color: var(--dark-blue); font-weight: 700; text-decoration: none;">Community</a>
+      <a href="search-results.html" style="color: var(--dark-blue); font-weight: 700; text-decoration: none;">Search</a>
+      <button class="login-btn" type="button" id="authNavBtn">Log In</button>
+    </div>
   </header>
 
   <main class="hero">
@@ -290,14 +294,35 @@
     </section>
   </main>
 
-  <footer>Data provided by the EPA How’s My Waterway Database.</footer>
-  <footer>Data provided by the EPA How’s My Waterway Database and local government sources</footer>
+  <footer>Data provided by the EPA How’s My Waterway Database and local government sources.</footer>
 </div>
 
 
 <!-- ========================
       ZIPCODE SCRIPT
 ======================== -->
+<script src="auth-nav.js"></script>
+<script>
+  (function () {
+    var btn = document.getElementById("authNavBtn");
+    if (!btn || !window.CannonballAuth) return;
+    function sync() {
+      if (window.CannonballAuth.isLoggedIn()) {
+        btn.textContent = "Log out";
+        btn.onclick = function () {
+          window.CannonballAuth.clearSession();
+          sync();
+        };
+      } else {
+        btn.textContent = "Log In";
+        btn.onclick = function () {
+          window.location.href = "login.html";
+        };
+      }
+    }
+    sync();
+  })();
+</script>
 <script src="water-data.js"></script>
 <script>
   const availableZipcodes = [...new Set(

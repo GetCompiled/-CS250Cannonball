@@ -289,7 +289,11 @@
         <img src="Cannonball Assets/Cannonball Logo With Text.PNG" alt="Cannonball logo" />
       </a>
     </div>
-    <button class="login-btn" type="button">Log In</button>
+    <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+      <a href="community.html" style="color: var(--dark-blue); font-weight: 700; text-decoration: none;">Community</a>
+      <a href="index.html" style="color: var(--dark-blue); font-weight: 700; text-decoration: none;">Home</a>
+      <button class="login-btn" type="button" id="authNavBtn">Log In</button>
+    </div>
   </header>
 
   <main class="search-section">
@@ -355,15 +359,38 @@
   <footer>Data provided by the EPA How's My Waterway Database and local government sources</footer>
 </div>
 
+<script src="auth-nav.js"></script>
+<script>
+  (function () {
+    var btn = document.getElementById("authNavBtn");
+    if (!btn || !window.CannonballAuth) return;
+    function sync() {
+      if (window.CannonballAuth.isLoggedIn()) {
+        btn.textContent = "Log out";
+        btn.onclick = function () {
+          window.CannonballAuth.clearSession();
+          sync();
+        };
+      } else {
+        btn.textContent = "Log In";
+        btn.onclick = function () {
+          window.location.href = "login.html";
+        };
+      }
+    }
+    sync();
+  })();
+</script>
 <script src="water-data.js"></script>
 <script>
-  // Configure API endpoint based on environment
-  // On GitHub Pages: no proxy available, will use fallback data
-  // On localhost: use proxy if available at port 3000
-  if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
-    window.CANNONBALL_LIVE_DATA_URL = "http://localhost:3000/api/water-data";
+  // Configure API endpoint: same origin on port 3000, else call the Node server on 3000
+  if (window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1") {
+    if (window.location.port === "3000") {
+      window.CANNONBALL_LIVE_DATA_URL = "/api/water-data";
+    } else {
+      window.CANNONBALL_LIVE_DATA_URL = "http://localhost:3000/api/water-data";
+    }
   } else {
-    // On GitHub Pages or production: no proxy, use local data
     window.CANNONBALL_LIVE_DATA_URL = "";
   }
 </script>

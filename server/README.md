@@ -1,6 +1,6 @@
-# Cannonball Proxy Starter
+# Cannonball local server
 
-This small Node server provides a browser-safe endpoint for water data.
+This Node process serves the static Cannonball pages from the repo root **and** provides JSON APIs (water data, auth, community posts).
 
 ## Start
 
@@ -11,13 +11,13 @@ cd server
 npm start
 ```
 
-Default endpoint:
+Then open **http://localhost:3000/** (not a `file://` URL).
 
-- `http://localhost:3000/api/water-data`
+Useful URLs:
 
-Health check:
-
-- `http://localhost:3000/health`
+- App home: `http://localhost:3000/`
+- Water data: `http://localhost:3000/api/water-data`
+- Health: `http://localhost:3000/health`
 
 ## Optional upstream API
 If you have a real API URL, run with an environment variable:

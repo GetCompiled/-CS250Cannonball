@@ -1,51 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Cannonball - Login Page</title>
+  <title>Cannonball - Sign in</title>
   <style>
-    /* ========================
-          COLOR SYSTEM
-    ======================== */
     :root {
       --light-grey: #D9D9D9;
       --dark-grey: #474646;
-
       --dark-blue: #5543F6;
       --light-blue: #4489F7;
-
-      --poor-bg: #E6A9A9;
-      --poor-text: #7A5554;
-
-      --fair-bg: #E4E6A9;
-      --fair-text: #7A7954;
-
-      --good-bg: #A9E6BD;
-      --good-text: #547A60;
     }
-
-    * { box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
       font-family: Arial, sans-serif;
       min-height: 100vh;
       background:
-              radial-gradient(circle at top, rgba(68, 137, 247, 0.25), transparent 40%),
-              linear-gradient(180deg, var(--light-blue) 0%, var(--dark-blue) 100%);
+        radial-gradient(circle at top, rgba(68, 137, 247, 0.25), transparent 40%),
+        linear-gradient(180deg, var(--light-blue) 0%, var(--dark-blue) 100%);
       color: #fff;
     }
-
-    .page {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-      /* ========================
-              HEADER
-    ======================== */
+    .page { min-height: 100vh; display: flex; flex-direction: column; }
     .topbar {
       background: rgba(255, 255, 255, 0.96);
       padding: 16px 32px;
@@ -53,27 +28,26 @@
       align-items: center;
       justify-content: space-between;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+      flex-wrap: wrap;
+      gap: 12px;
     }
-
-    .brand img {
-      height: 42px;
+    .topbar-nav { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; }
+    .topbar-nav a {
+      color: var(--dark-blue);
+      font-weight: 600;
+      text-decoration: none;
     }
-
+    .topbar-nav a:hover { text-decoration: underline; }
+    .logo-btn img { height: 42px; display: block; }
     .logo-btn {
       display: inline-block;
       border-radius: 10px;
       transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
-    .logo-btn img{
-      height: 42px;
-      display: block;
-    }
-    .logo-btn:hover{
+    .logo-btn:hover {
       transform: scale(1.05);
-      box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
-
     .login-btn {
       border: none;
       background: linear-gradient(90deg, var(--light-blue), var(--dark-blue));
@@ -84,133 +58,226 @@
       font-size: 1rem;
       font-weight: 600;
     }
-    /* ============= MAIN ============*/ 
-    .coming-soon-wrapper{
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: flex-start;
-        padding: 60px 20px;
+    .coming-soon-wrapper {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      padding: 40px 20px 60px;
     }
-
-    .coming-card{
-        width: 100%;
-        max-width: 1000px;
-        background: #ffffff;
-        color: var(--dark-grey);
-        border-radius: 12px;
-        padding: 60px 20px;
-        text-align: center;
-        border: 2px solid rgba(85, 67, 246, 0.4);
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    .coming-card {
+      width: 100%;
+      max-width: 440px;
+      background: #ffffff;
+      color: var(--dark-grey);
+      border-radius: 12px;
+      padding: 36px 28px;
+      text-align: left;
+      border: 2px solid rgba(85, 67, 246, 0.4);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     }
-    /* Icon Circle */
-    .icon-circle{
-        width: 90px;
-        height: 90px;
-        margin: 0 auto 20px;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background: var(--light-blue);
-        box-shadow: 0 8px 20px rgba(85, 67, 246, 0.4);
-        animation: float 2.5s ease-in-out infinite;
+    .tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 24px;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #c8c8d8;
     }
-    .icon-img{
-        width: 45px;
-        height: 45px;
-        object-fit: contain;
+    .tabs button {
+      flex: 1;
+      padding: 12px;
+      border: none;
+      background: #f0f0f5;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: #555;
     }
-    .coming-card h2{
-        font-size: 1.5rem;
-        font-weight: 600;
+    .tabs button.active {
+      background: linear-gradient(90deg, var(--light-blue), var(--dark-blue));
+      color: #fff;
     }
-    @keyframes float{
-        0%, 100% {transform: translateY(0);}
-        50% {transform: translateY(-8px);}
+    .panel { display: none; }
+    .panel.active { display: block; }
+    label { display: block; font-weight: 600; margin-bottom: 6px; font-size: 0.9rem; }
+    .field { margin-bottom: 16px; }
+    input[type="email"], input[type="password"] {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1px solid #c8c8d8;
+      border-radius: 10px;
+      font-size: 1rem;
     }
-    /* =========== FOOTER ======== */
-    footer{
-    text-align: center;
-    padding: 18px;
-    background: rgba(255, 255, 255, 0.92);
-    color: #666;
-}
-    </style>
-    </head>
-    <body>
-        <div class = "page">
-            <header class = "topbar">
-                <a href = "index.html" class = "logo-btn">
-                    <img src="Cannonball Assets/Cannonball Logo With Text.PNG" alt = "Cannonball logo">
-                    </a>
-                    <button class = "login-btn">Log In</button>
-            </header>
+    .primary-btn {
+      width: 100%;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: linear-gradient(90deg, var(--light-blue), var(--dark-blue));
+      color: #fff;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+    .primary-btn:disabled { opacity: 0.6; cursor: wait; }
+    #statusMessage { margin-top: 14px; min-height: 22px; font-size: 0.95rem; }
+    .hint { font-size: 0.85rem; color: #666; margin-top: 4px; }
+    footer {
+      text-align: center;
+      padding: 18px;
+      background: rgba(255, 255, 255, 0.92);
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="topbar">
+      <a href="index.html" class="logo-btn">
+        <img src="Cannonball Assets/Cannonball Logo With Text.PNG" alt="Cannonball logo" />
+      </a>
+      <nav class="topbar-nav">
+        <a href="index.html">Home</a>
+        <a href="search-results.html">Search</a>
+        <a href="community.html">Community</a>
+      </nav>
+    </header>
 
-    <main class = "coming-soon-wrapper">
-        <div class = "coming-card">
-            <div class = "icon-circle">
-                <img src = "Cannonball Assets/Smiley Icon.png" alt = "smiley icon" class = "icon-img">
-                </div>
-            
-                <h2>Login</h2>
-
-<br><br>
-
-<input type="email" id="email" placeholder="Enter Email">
-
-<br><br>
-
-<input type="password" id="password" placeholder="Enter Password">
-
-<br><br>
-
-<button id="loginBtn">Sign in</button>
-
-<br><br>
-
-<p id="errorMessage"></p>
-            </div>
-        </main>
-
-        <footer>
-            Data provided by the Environmental Protection Agency's How's My Waterway Database
-
-        </footer>
+    <main class="coming-soon-wrapper">
+      <div class="coming-card">
+        <div class="tabs" role="tablist">
+          <button type="button" class="active" id="tabSignIn" role="tab" aria-selected="true">Sign in</button>
+          <button type="button" id="tabRegister" role="tab" aria-selected="false">Create account</button>
         </div>
-        <script>
-          document.getElementById("loginBtn").addEventListener("click", async function() {
-              const email = document.getElementById("email").value;
-              const password = document.getElementById("password").value;
-              const errorMessage = document.getElementById("errorMessage");
-          
-              try {
-                  const response = await fetch("http://localhost:3000/login", {
-                      method: "POST",
-                      headers: {
-                          "Content-Type": "application/json"
-                      },
-                      body: JSON.stringify({
-                          email: email,
-                          password: password
-                      })
-                  });
-          
-                  const data = await response.json();
-          
-                  if (data.success) {
-                      localStorage.setItem("loggedIn", "true");
-                      window.location.href = "index.html";
-                  } else {
-                      errorMessage.textContent = data.message;
-                      errorMessage.style.color = "red";
-                  }
-              } catch (error) {
-                  errorMessage.textContent = "Could not connect to backend server.";
-                  errorMessage.style.color = "red";
-              }
-          });
-          </script>
-    </body>
-    </html>
+
+        <div id="panelSignIn" class="panel active" role="tabpanel">
+          <div class="field">
+            <label for="signinEmail">Email</label>
+            <input type="email" id="signinEmail" autocomplete="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="signinPassword">Password</label>
+            <input type="password" id="signinPassword" autocomplete="current-password" placeholder="Password" />
+          </div>
+          <button type="button" class="primary-btn" id="signinBtn">Sign in</button>
+        </div>
+
+        <div id="panelRegister" class="panel" role="tabpanel">
+          <div class="field">
+            <label for="regEmail">Email</label>
+            <input type="email" id="regEmail" autocomplete="email" placeholder="you@example.com" />
+          </div>
+          <div class="field">
+            <label for="regPassword">Password</label>
+            <input type="password" id="regPassword" autocomplete="new-password" placeholder="At least 8 characters" />
+            <p class="hint">Use at least 8 characters.</p>
+          </div>
+          <button type="button" class="primary-btn" id="registerBtn">Create account</button>
+        </div>
+
+        <p id="statusMessage" role="status"></p>
+      </div>
+    </main>
+
+    <footer>Data provided by the Environmental Protection Agency's How's My Waterway Database</footer>
+  </div>
+
+  <script src="auth-nav.js"></script>
+  <script>
+    (function () {
+      var base = window.CannonballAuth.apiBase();
+      var statusEl = document.getElementById("statusMessage");
+
+      function setStatus(text, isError) {
+        statusEl.textContent = text || "";
+        statusEl.style.color = isError ? "#c62828" : "#2e7d32";
+      }
+
+      var tabSignIn = document.getElementById("tabSignIn");
+      var tabRegister = document.getElementById("tabRegister");
+      var panelSignIn = document.getElementById("panelSignIn");
+      var panelRegister = document.getElementById("panelRegister");
+
+      function showSignIn() {
+        tabSignIn.classList.add("active");
+        tabRegister.classList.remove("active");
+        panelSignIn.classList.add("active");
+        panelRegister.classList.remove("active");
+        tabSignIn.setAttribute("aria-selected", "true");
+        tabRegister.setAttribute("aria-selected", "false");
+        setStatus("", false);
+      }
+      function showRegister() {
+        tabRegister.classList.add("active");
+        tabSignIn.classList.remove("active");
+        panelRegister.classList.add("active");
+        panelSignIn.classList.remove("active");
+        tabRegister.setAttribute("aria-selected", "true");
+        tabSignIn.setAttribute("aria-selected", "false");
+        setStatus("", false);
+      }
+      tabSignIn.addEventListener("click", showSignIn);
+      tabRegister.addEventListener("click", showRegister);
+
+      async function postJson(path, body) {
+        var res = await fetch(base + path, {
+          method: "POST",
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
+          body: JSON.stringify(body)
+        });
+        var data = {};
+        try {
+          data = await res.json();
+        } catch (e) {
+          data = { success: false, message: "Invalid response from server." };
+        }
+        return { res: res, data: data };
+      }
+
+      document.getElementById("signinBtn").addEventListener("click", async function () {
+        var email = document.getElementById("signinEmail").value.trim();
+        var password = document.getElementById("signinPassword").value;
+        setStatus("", false);
+        var btn = document.getElementById("signinBtn");
+        btn.disabled = true;
+        try {
+          var out = await postJson("/api/login", { email: email, password: password });
+          if (out.data.success && out.data.token) {
+            window.CannonballAuth.setSession(out.data.token, out.data.user && out.data.user.email ? out.data.user.email : email);
+            setStatus("Signed in. Redirecting…", false);
+            window.location.href = "index.html";
+            return;
+          }
+          setStatus(out.data.message || "Could not sign in.", true);
+        } catch (err) {
+          setStatus("Could not connect to the server. Run `cd server && npm start` and open http://localhost:3000/login.html", true);
+        }
+        btn.disabled = false;
+      });
+
+      document.getElementById("registerBtn").addEventListener("click", async function () {
+        var email = document.getElementById("regEmail").value.trim();
+        var password = document.getElementById("regPassword").value;
+        setStatus("", false);
+        var btn = document.getElementById("registerBtn");
+        btn.disabled = true;
+        try {
+          var out = await postJson("/api/register", { email: email, password: password });
+          if (out.data.success && out.data.token) {
+            window.CannonballAuth.setSession(out.data.token, out.data.user && out.data.user.email ? out.data.user.email : email);
+            setStatus("Account created. Redirecting…", false);
+            window.location.href = "index.html";
+            return;
+          }
+          setStatus(out.data.message || "Could not create account.", true);
+        } catch (err) {
+          setStatus("Could not connect to the server. Run `cd server && npm start` and open http://localhost:3000/login.html", true);
+        }
+        btn.disabled = false;
+      });
+    })();
+  </script>
+</body>
+</html>
